@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Base class for stratagems
+
 public class Stratagem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //variable for calldown time
+    protected float calldownTime;
+    //variable for speed
+    protected float speed;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+    
 }

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject playerReference;
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerReference = GameObject.Find("PlayerContainer");
     }
 }
