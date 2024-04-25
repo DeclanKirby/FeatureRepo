@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Stratagem : MonoBehaviour
 {
+    protected KeyCode key1, key2, key3, key4;
+    public KeyCode[] keyCombination = { };
+
+    
     //variable for calldown time
     protected float calldownTime;
     //variable for speed
