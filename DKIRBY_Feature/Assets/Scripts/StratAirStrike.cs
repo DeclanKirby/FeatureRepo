@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class StratAirStrike : Stratagem
 {
+
+
+
+    private void Awake()
+    {
+        this.keyCombination = new KeyCode[] {KeyCode.W, KeyCode.W , KeyCode.W , KeyCode.W };
+        Debug.Log("Airstrike Combination Set");
+    }
+
     
 
-
-    private void Start()
+    protected override void Activate()
     {
-
+        Debug.Log("Air-Strike!!!");
     }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
-
     
 }
