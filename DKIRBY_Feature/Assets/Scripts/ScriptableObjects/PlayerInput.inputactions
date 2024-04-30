@@ -1,5 +1,5 @@
 {
-    "name": "PlayerMovement",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Movement",
@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "4ecdbf04-053b-420b-a044-2117a59e4c1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -92,6 +101,17 @@
                     "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dcf9fa41-e10c-42d7-b3a2-381d586eea64",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -100,7 +120,7 @@
             "id": "c6e8c69b-90ab-463b-a8a3-3983a1404735",
             "actions": [
                 {
-                    "name": "WASD",
+                    "name": "Control",
                     "type": "Button",
                     "id": "a30f9b2d-09a7-4b28-b303-981c2102899e",
                     "expectedControlType": "Button",
@@ -117,7 +137,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -128,7 +148,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -139,7 +159,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -150,7 +170,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -161,7 +181,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -172,7 +192,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -183,7 +203,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -194,7 +214,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -205,7 +225,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -216,7 +236,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -227,7 +247,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -238,7 +258,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Control",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

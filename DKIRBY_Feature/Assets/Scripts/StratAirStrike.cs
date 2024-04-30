@@ -19,6 +19,8 @@ public class StratAirStrike : Stratagem
     protected override void Activate()
     {
         Debug.Log("Air-Strike!!!");
+        //turn on strat ball
+        airstrike = true;
     }
     
 }

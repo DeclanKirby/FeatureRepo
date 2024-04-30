@@ -21,6 +21,9 @@ public class Stratagem : MonoBehaviour
 
 
     private int keyIndex = 0;
+
+    public bool airstrike = false;
+    public bool orbital = false;
     private void Awake()
     {
         myPlayerInput = new PlayerInput();
