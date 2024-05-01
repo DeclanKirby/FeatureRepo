@@ -11,18 +11,28 @@ public class StratBall : MonoBehaviour
     public bool orbital = false;
 
     public GameObject stratBall;
+
     
 
+    public bool activated = true;
+
+    public Vector3 stratagemLocation;
     private void Awake()
     {
-        stratBall.SetActive(false);
         
+        //stratBall.SetActive(false);
+        this.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     //if left mouse is clicked, move this game Object forward
     //gravity should be on
     private void Update()
     {
+
+        if(airstrike == false)
+        {
+            transform.parent = null;
+        }
         //if the combination is done set the ball to active
         if(airstrike == true)
         {
@@ -34,8 +44,16 @@ public class StratBall : MonoBehaviour
 
             //throw ball
 
-            //this.transform.position += Vector3.forward;
 
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Terrain")
+        {
+            //stratagemLocation = this.gameObject.transform.parent.position;
+            
+            this.gameObject.SetActive(false);
         }
     }
 }

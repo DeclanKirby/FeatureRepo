@@ -25,4 +25,9 @@ public class PlayerLook : MonoBehaviour
     {
          
     }
+
+    private void look()
+    {
+
+    }
 }
