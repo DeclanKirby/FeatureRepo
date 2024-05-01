@@ -20,6 +20,8 @@ public class StratAirStrike : Stratagem
     {
         Debug.Log("Air-Strike!!!");
         //turn on strat ball
+        Debug.Log(stratBall.transform.position);
+
         
     }
     

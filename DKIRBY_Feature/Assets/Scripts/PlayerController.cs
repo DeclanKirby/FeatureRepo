@@ -52,18 +52,19 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            GameObject.Find("StratBall").GetComponent<StratBall>().activated = true;
+            
+            GameObject.Find("StratBall(Clone)").GetComponent<StratBall>().activated = true;
 
             ball.GetComponent<Rigidbody>().isKinematic = false;
 
             ball.GetComponent<Rigidbody>().velocity = -mouseDelta * velocityMult;
         }
-        ball = GameObject.Find("StratBall");
+        ball = GameObject.Find("StratBall(Clone)");
         //------------------
         //Below is where i ended, null reference exception because once ball is setactive to false, it no longer has any input for it's location
         //fix in StratBall when setting active to false
 
-        stratLocation = ball.GetComponent<StratBall>().stratagemLocation;
+        //stratLocation = ball.GetComponent<StratBall>().stratagemLocation;
     }
 
     

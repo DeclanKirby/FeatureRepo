@@ -11,6 +11,13 @@ public class Stratagem : MonoBehaviour
     public KeyCode[] keyCombination;
 
     private PlayerInput myPlayerInput;
+
+    public GameObject stratBall;
+
+    public Transform ballParent;
+
+    
+
     //variable for calldown time
     protected float calldownTime;
     //variable for speed
@@ -22,18 +29,31 @@ public class Stratagem : MonoBehaviour
 
     private int keyIndex = 0;
 
-    public bool airstrike = false;
-    public bool orbital = false;
+    public bool isPrimed = false;
+    
     private void Awake()
     {
         myPlayerInput = new PlayerInput();
         myPlayerInput.Enable();
     }
+    protected virtual void Primed()
+    {
+        isPrimed = true;
+        
+        GameObject ballContainer = GameObject.Find("StratBallContainer");
+        Vector3 ballSpawnpoint = ballContainer.GetComponent<Rigidbody>().transform.position;
+       
+        Instantiate(stratBall, ballSpawnpoint, transform.rotation);
+
+        
+        
+
+
+    }
+
     protected virtual void Activate()
     {
         Debug.Log("Subclass should override this method");
-
-        
     }
 
     private void Update()
@@ -70,7 +90,7 @@ public class Stratagem : MonoBehaviour
                 //Debug.Log("Index advanced");
                 if (keyIndex >= keyCombination.Length)
                 {
-                    this.Activate();
+                    this.Primed();
                     isElligible = false;
                     keyIndex = 0;
 

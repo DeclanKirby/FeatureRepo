@@ -12,7 +12,7 @@ public class StratOrbital : Stratagem
 
 
 
-    protected override void Activate()
+    protected override void Primed()
     {
         Debug.Log("Orbital Incoming!!!");
     }
