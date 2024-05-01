@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject storagePoint;
 
-    public float velocityMult = 20f;
+    public float velocityMult = 10f;
 
     public float sensitivity = 2.0f;
 
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         //------------------
         //Below is where i ended, null reference exception because once ball is setactive to false, it no longer has any input for it's location
         //fix in StratBall when setting active to false
+
         stratLocation = ball.GetComponent<StratBall>().stratagemLocation;
     }
 

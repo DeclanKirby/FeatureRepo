@@ -31,7 +31,7 @@ public class StratBall : MonoBehaviour
 
         if(airstrike == false)
         {
-            transform.parent = null;
+            //transform.parent = null;
         }
         //if the combination is done set the ball to active
         if(airstrike == true)
@@ -51,9 +51,18 @@ public class StratBall : MonoBehaviour
     {
         if(collision.gameObject.tag == "Terrain")
         {
-            //stratagemLocation = this.gameObject.transform.parent.position;
-            
-            this.gameObject.SetActive(false);
+
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            //stop the balls velocity
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            //stop the balls angular velocity and drag
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularDrag = 0;
+
+            //get a reference to the strat balls location
+            stratagemLocation = this.GetComponent<Rigidbody>().transform.position;
+            //print(stratagemLocation);
         }
     }
 }
