@@ -1395,7 +1395,10 @@ MonoBehaviour:
   keyCombination: 
   stratBall: {fileID: 7516154232056321374, guid: d24ca18de39951e4190edf5b4618efe5,
     type: 3}
+  ballParent: {fileID: 0}
   isPrimed: 0
+  airstrikePrefab: {fileID: 4511714706513088403, guid: f1947a59eaab63b438d26a2ece67bddd,
+    type: 3}
 --- !u!4 &1581806689
 Transform:
   m_ObjectHideFlags: 0
@@ -1426,38 +1429,10 @@ MonoBehaviour:
   keyCombination: 
   stratBall: {fileID: 7516154232056321374, guid: d24ca18de39951e4190edf5b4618efe5,
     type: 3}
+  ballParent: {fileID: 0}
   isPrimed: 0
---- !u!1 &1592171305
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1592171307}
-  m_Layer: 0
-  m_Name: StratagemContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1592171307
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592171305}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.75, z: -0.21000004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  orbitalPrefab: {fileID: 885827555735200029, guid: 2e9f9a074805b8f4db5eb3f1dcc21ac0,
+    type: 3}
 --- !u!1 &1753699841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,4 +2264,3 @@ SceneRoots:
   - {fileID: 1581806689}
   - {fileID: 1753699843}
   - {fileID: 773007524}
-  - {fileID: 1592171307}

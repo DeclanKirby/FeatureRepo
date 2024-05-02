@@ -5,24 +5,30 @@ using UnityEngine;
 
 public class StratAirStrike : Stratagem
 {
+    public GameObject airstrikePrefab;
 
-
-
+    
     private void Awake()
     {
         this.keyCombination = new KeyCode[] {KeyCode.W, KeyCode.W , KeyCode.W , KeyCode.W };
         Debug.Log("Airstrike Combination Set");
     }
-
     
 
-    protected override void Activate()
-    {
-        Debug.Log("Air-Strike!!!");
-        //turn on strat ball
-        Debug.Log(stratBall.transform.position);
 
+    public override void Activate(Vector3 stratBallLocation)
+    {
         
+            Debug.Log("Air-Strike!!!");
+        Vector3 spawnLocation = getPlayerLocation();
+        spawnLocation.y += 15;
+        GameObject newObject = Instantiate(airstrikePrefab, spawnLocation, transform.rotation);
+        newObject.GetComponent<AirstrikeAnimation>().targetLocation = stratBallLocation;
+
+
+
+
+
     }
     
 }

@@ -36,8 +36,9 @@ public class Stratagem : MonoBehaviour
         myPlayerInput = new PlayerInput();
         myPlayerInput.Enable();
     }
-    protected virtual void Primed()
+    protected  void Primed()
     {
+        Debug.Log("Primed");
         isPrimed = true;
         
         GameObject ballContainer = GameObject.Find("StratBallContainer");
@@ -45,24 +46,32 @@ public class Stratagem : MonoBehaviour
        
         Instantiate(stratBall, ballSpawnpoint, transform.rotation);
 
+        stratBall.GetComponent<StratBall>().setStrat(this);
+        GameObject pc = GameObject.Find("PlayerContainer");
+        pc.GetComponent<PlayerController>().ball = stratBall;
         
         
 
 
     }
 
-    protected virtual void Activate()
+    protected Vector3 getPlayerLocation()
+    {
+        GameObject player = GameObject.Find("PlayerContainer");
+        return player.transform.position;
+    }
+
+    public virtual void Activate(Vector3 stratBallLocation)
     {
         Debug.Log("Subclass should override this method");
     }
 
     private void Update()
     {
-        //KeyCode thisKey = myPlayerInput.StratControls.WASD.ReadValue<KeyCode>();
-        //Debug.Log(thisKey);
+        
         if (Input.GetKeyDown(KeyCode.LeftControl) && isElligible == true)
         {
-            //Debug.Log("Ctrl is down");
+            
             keyPressedCtrl = true;
             
             
@@ -70,7 +79,7 @@ public class Stratagem : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            //Debug.Log("Ctrl is up");
+            
             keyPressedCtrl = false;
             isElligible = true;
             keyIndex = 0;
@@ -83,13 +92,15 @@ public class Stratagem : MonoBehaviour
         //XOR goes down the line and checks if only one is true
         if (keyPressedCtrl && (keyPressedW || keyPressedA || keyPressedS || keyPressedD)&& isElligible)
         {
-            //Debug.Log("Key is pressed");
+            
             if (Input.GetKeyDown(keyCombination[keyIndex]))
             {
+                
                 keyIndex++;
-                //Debug.Log("Index advanced");
+                
                 if (keyIndex >= keyCombination.Length)
                 {
+                    
                     this.Primed();
                     isElligible = false;
                     keyIndex = 0;
@@ -100,7 +111,7 @@ public class Stratagem : MonoBehaviour
             {
                 isElligible = false;
                 keyIndex = 0;
-                //Debug.Log("Inelligible");
+                
             }
         }
 

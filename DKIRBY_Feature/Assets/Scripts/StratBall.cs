@@ -7,7 +7,7 @@ using UnityEngine;
 public class StratBall : MonoBehaviour
 {
     //different bools
-    public bool locationSet = false;
+    
 
     public GameObject stratBall;
 
@@ -16,6 +16,12 @@ public class StratBall : MonoBehaviour
     public bool activated = true;
 
     public Vector3 stratagemLocation;
+
+    public bool stratagemActive = false;
+
+    public float velocityMult = 10f;
+
+    public Stratagem stratagem;
     private void Awake()
     {
         
@@ -25,37 +31,36 @@ public class StratBall : MonoBehaviour
         this.gameObject.transform.parent = ballContainer.transform;
     }
 
-    //if left mouse is clicked, move this game Object forward
-    //gravity should be on
+    public void setStrat(Stratagem strat)
+    {
+        Debug.Log("SettingStrat");
+        stratagem = strat;
+        Debug.Log(stratagem);
+    }
+
     private void Update()
     {
-        if (locationSet)
-        {
-            this.transform.position = stratagemLocation;
-            //ADD COROUTINE FOR COOLDOWN ON STRAT BALL
-            
-        }
-       
-        //if the combination is done set the ball to active
-        
-        
-            
-        
-        //if player clicks while ball is active throw strat ball
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            Vector3 mousePos2D = Input.mousePosition;
 
-            //throw ball
+            mousePos2D.z = -Camera.main.transform.position.z;
+            Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
 
+            Vector3 mouseDelta = mousePos3D - this.transform.position;
 
+            transform.parent = null;
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<Rigidbody>().velocity = -mouseDelta * velocityMult;
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Terrain")
         {
 
-            
+            this.GetComponent<Rigidbody>().isKinematic = false;
             //stop the balls velocity
             GetComponent<Rigidbody>().velocity = Vector3.zero;
 
@@ -66,9 +71,13 @@ public class StratBall : MonoBehaviour
             //get a reference to the strat balls location
             stratagemLocation = this.GetComponent<Rigidbody>().transform.position;
 
-            //set location to stratagemLocation
-            locationSet = true;
-            //print(stratagemLocation);
+            
+            
+
+            //start stratagem activation
+            Debug.Log(stratagem);
+            stratagem.Activate(stratagemLocation);
+            Destroy(this.gameObject);
         }
     }
 }
