@@ -43,10 +43,10 @@ public class Stratagem : MonoBehaviour
         
         GameObject ballContainer = GameObject.Find("StratBallContainer");
         Vector3 ballSpawnpoint = ballContainer.GetComponent<Rigidbody>().transform.position;
-       
+        stratBall.GetComponent<StratBall>().setStrat(this);
         Instantiate(stratBall, ballSpawnpoint, transform.rotation);
 
-        stratBall.GetComponent<StratBall>().setStrat(this);
+        
         GameObject pc = GameObject.Find("PlayerContainer");
         pc.GetComponent<PlayerController>().ball = stratBall;
         
@@ -89,7 +89,7 @@ public class Stratagem : MonoBehaviour
         bool keyPressedS = Input.GetKeyDown(KeyCode.S);
         bool keyPressedD = Input.GetKeyDown(KeyCode.D);
 
-        //XOR goes down the line and checks if only one is true
+        
         if (keyPressedCtrl && (keyPressedW || keyPressedA || keyPressedS || keyPressedD)&& isElligible)
         {
             

@@ -21,7 +21,7 @@ public class StratAirStrike : Stratagem
         
             Debug.Log("Air-Strike!!!");
         Vector3 spawnLocation = getPlayerLocation();
-        spawnLocation.y += 15;
+        spawnLocation.y += 30;
         GameObject newObject = Instantiate(airstrikePrefab, spawnLocation, transform.rotation);
         newObject.GetComponent<AirstrikeAnimation>().targetLocation = stratBallLocation;
 
