@@ -12,13 +12,14 @@ using UnityEngine.SocialPlatforms.Impl;
 public class UI : MonoBehaviour
 {
     public GameObject controlDisplay;
-
+    public GameObject stratPanel;
   
     // Start is called before the first frame update
     void Start()
     {
        
         controlDisplay.SetActive(false);
+        stratPanel.SetActive(false);
         
     }
     // Update is called once per frame
@@ -39,11 +40,13 @@ public class UI : MonoBehaviour
             
             
             controlDisplay.SetActive(!controlDisplay.activeSelf);
+            stratPanel.SetActive(!stratPanel.activeSelf);
 
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             controlDisplay.SetActive(!controlDisplay.activeSelf);
+            stratPanel.SetActive(!stratPanel.activeSelf);
         }
 
     }
