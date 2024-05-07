@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AirstrikeAnimation : MonoBehaviour
@@ -8,25 +9,34 @@ public class AirstrikeAnimation : MonoBehaviour
 
     private Vector3 startingPos;
 
-    
+    private Vector3 minScale = new Vector3(1f,1f,1f);
+    private Vector3 maxScale = new Vector3(15f, 15f, 15f);
+    private float duration = 5f;
+
+    private float startTime;
 
     // Start is called before the first frame update
     void Start()
     {
         startingPos = this.transform.position;
+        startTime = Time.time;
         
     }
 
-    public float timeDuration = 1f;
+    public float timeDuration = 3f;
     public Vector3 p01;
 
     public bool checkToCalculate = true;
     public bool moving = false;
     public float timeStart;
+
+    public bool explosion = false;
     /// <summary>
     /// Move the thing, allow the user to check the checkToCalculate box in the inspector
     /// to start our movement
     /// </summary>
+    
+    
     private void Update()
     {
         if (checkToCalculate)
@@ -57,13 +67,44 @@ public class AirstrikeAnimation : MonoBehaviour
 
             this.transform.position = p01;
         }
+        if (explosion)
+        {
+            ChangeSize();
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Terrain")
         {
             Debug.Log("KABOOOM");
-            Destroy(this.gameObject);
+            Collider thisCollider = GetComponent<Collider>();
+            thisCollider.enabled = false;
+            StartCoroutine(Called());
+            
         }
+    }
+
+    private void ChangeSize()
+    {
+        float t = Mathf.PingPong(Time.time - startTime, duration) / duration;
+
+        Vector3 newScale = Vector3.Lerp(minScale, maxScale, t);
+
+        transform.localScale = newScale;
+    }
+    IEnumerator Called()
+    {
+        this.GetComponent<Rigidbody>().isKinematic = false;
+        //stop the balls velocity
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        //stop the balls angular velocity and drag
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularDrag = 0;
+
+        explosion = true;
+        
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 }

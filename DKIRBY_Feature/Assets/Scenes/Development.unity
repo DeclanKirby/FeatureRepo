@@ -304,7 +304,6 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585549}
   - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
@@ -439,7 +438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -491,21 +490,6 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &330585549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9aba2b3dd672a84f906bb6c8b922da0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minViewDistance: 25
-  mouseSensitivity: 100
-  playerBody: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1672,7 @@ Transform:
   m_GameObject: {fileID: 1880960199}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.41, z: 1.89}
+  m_LocalPosition: {x: 0, y: -0.029, z: 1.957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1736,6 +1720,7 @@ GameObject:
   - component: {fileID: 1883106354}
   - component: {fileID: 1883106359}
   - component: {fileID: 1883106360}
+  - component: {fileID: 1883106362}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Untagged
@@ -1761,6 +1746,9 @@ MonoBehaviour:
   sensitivity: 2
   speed: 2
   stratLocation: {x: 0, y: 0, z: 0}
+  mouseSensitivity: 500
+  rotationSpeed: 5
+  playerBody: {fileID: 1883106358}
 --- !u!136 &1883106355
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1907,6 +1895,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1883106362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883106352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9aba2b3dd672a84f906bb6c8b922da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 500
+  rotationSpeed: 5
+  playerBody: {fileID: 1883106358}
 --- !u!1 &1904704448
 GameObject:
   m_ObjectHideFlags: 0

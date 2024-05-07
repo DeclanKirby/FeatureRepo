@@ -75,7 +75,7 @@ public class StratBall : MonoBehaviour
             
 
             //start stratagem activation
-            Debug.Log(stratagem);
+            //Debug.Log(stratagem);
             stratagem.Activate(stratagemLocation);
             Destroy(this.gameObject);
         }
