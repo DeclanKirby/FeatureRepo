@@ -23,7 +23,7 @@ public class AirstrikeAnimation : MonoBehaviour
         
     }
 
-    public float timeDuration = 3f;
+    public float timeDuration = 2f;
     public Vector3 p01;
 
     public bool checkToCalculate = true;

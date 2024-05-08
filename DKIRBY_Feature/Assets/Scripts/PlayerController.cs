@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         storagePos = storagePoint.transform.position;
 
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
 
     }
@@ -64,8 +64,10 @@ public class PlayerController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         
-            _input = context.ReadValue<Vector2>();
-            direction = new Vector3(_input.x, 0f, _input.y);
+        _input = context.ReadValue<Vector2>();
+        direction = new Vector3(_input.x, 0f, _input.y);
+        direction = direction.normalized;
+        direction = playerBody.transform.rotation * direction; 
         
         
     }
@@ -82,12 +84,12 @@ public class PlayerController : MonoBehaviour
 
         rotationX = Mathf.Clamp(xRotation, -90f, 90f);
         // Apply rotation to player controller
-        transform.Rotate(Vector3.up, rotationY, Space.World); // Rotate around the world up axis
+        transform.Rotate(Vector3.up, rotationY, Space.Self); // Rotate around the world up axis
         transform.Rotate(Vector3.left, rotationX); // Rotate around the local left axis
 
         // Apply rotation to camera
 
-        playerBody.Rotate(Vector3.up, rotationY, Space.World); // Rotate around the world up axis
+        playerBody.Rotate(Vector3.up, rotationY, Space.Self); // Rotate around the world up axis
         playerBody.Rotate(Vector3.left, rotationX); // Rotate around the local left axis
     }
 }

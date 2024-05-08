@@ -19,7 +19,9 @@ public class StratBall : MonoBehaviour
 
     public bool stratagemActive = false;
 
-    public float velocityMult = 10f;
+    public Vector3 velocityMult = new Vector3(0f,0f,10f);
+
+    
 
     public Stratagem stratagem;
     private void Awake()
@@ -42,16 +44,17 @@ public class StratBall : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Vector3 mousePos2D = Input.mousePosition;
-
-            mousePos2D.z = -Camera.main.transform.position.z;
-            Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
-
-            Vector3 mouseDelta = mousePos3D - this.transform.position;
+            
 
             transform.parent = null;
+
             this.GetComponent<Rigidbody>().isKinematic = false;
-            this.GetComponent<Rigidbody>().velocity = -mouseDelta * velocityMult;
+
+            GameObject playerContainer = GameObject.Find("PlayerContainer");
+           
+            //set rotation to forward
+            transform.rotation = playerContainer.transform.rotation;
+            this.GetComponent<Rigidbody>().velocity = transform.forward * 10f;
         }
     }
 
