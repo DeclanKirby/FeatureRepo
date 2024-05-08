@@ -13,13 +13,15 @@ public class UI : MonoBehaviour
 {
     public GameObject controlDisplay;
     public GameObject stratPanel;
+    public GameObject ctrlText;
   
-    // Start is called before the first frame update
+    // set active false, all that should be hidded when starting
     void Start()
     {
        
         controlDisplay.SetActive(false);
         stratPanel.SetActive(false);
+        ctrlText.SetActive(true);
         
     }
     // Update is called once per frame

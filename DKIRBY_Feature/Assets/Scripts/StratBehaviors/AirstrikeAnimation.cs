@@ -11,7 +11,7 @@ public class AirstrikeAnimation : MonoBehaviour
 
     private Vector3 minScale = new Vector3(1f,1f,1f);
     private Vector3 maxScale = new Vector3(15f, 15f, 15f);
-    private float duration = 5f;
+    private float duration = 0.5f;
 
     private float startTime;
 
@@ -23,10 +23,10 @@ public class AirstrikeAnimation : MonoBehaviour
         
     }
 
-    public float timeDuration = 2f;
+    public float timeDuration = 6;
     public Vector3 p01;
 
-    public bool checkToCalculate = true;
+    public bool spawned = true;
     public bool moving = false;
     public float timeStart;
 
@@ -39,9 +39,9 @@ public class AirstrikeAnimation : MonoBehaviour
     
     private void Update()
     {
-        if (checkToCalculate)
+        if (spawned)
         {
-            checkToCalculate = false;
+            spawned = false;
 
             //set the moving bool to true, and that will start the movement
             moving = true;
@@ -51,14 +51,11 @@ public class AirstrikeAnimation : MonoBehaviour
         if (moving)
         {
             float u = (Time.time - timeStart) / timeDuration;
-
-            //are we done moving (is u at 1(for us that means a u of 100%))
+            
             if (u >= 1)
-            {
-                //make sure we don't go past 100% of our way from point 0 to point 1
+            {                
                 u = 1;
-
-                //we made it to point 1, so we need to stop
+                
                 moving = false;
             }
 
@@ -88,9 +85,12 @@ public class AirstrikeAnimation : MonoBehaviour
     {
         float t = Mathf.PingPong(Time.time - startTime, duration) / duration;
 
-        Vector3 newScale = Vector3.Lerp(minScale, maxScale, t);
+        Vector3 growScale = Vector3.Lerp(minScale, maxScale, t);
 
-        transform.localScale = newScale;
+        transform.localScale = growScale;
+
+        
+       
     }
     IEnumerator Called()
     {
@@ -104,7 +104,10 @@ public class AirstrikeAnimation : MonoBehaviour
 
         explosion = true;
         
-        yield return new WaitForSeconds(2f);
+        
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
+
+    
 }

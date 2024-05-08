@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 /// <summary>
 /// after combination is input, instantiate this ball and set a certain property
 /// </summary>
 public class StratBall : MonoBehaviour
 {
-    //different bools
+    private static StratBall _instance;
+
+    public static StratBall Instance
+    {
+        get { return _instance; }
+    }
+
+
     
 
     public GameObject stratBall;
@@ -19,6 +29,8 @@ public class StratBall : MonoBehaviour
 
     public bool stratagemActive = false;
 
+    
+
     public Vector3 velocityMult = new Vector3(0f,0f,10f);
 
     
@@ -27,7 +39,14 @@ public class StratBall : MonoBehaviour
     private void Awake()
     {
         
-        //stratBall.SetActive(false);
+        if(_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
         this.GetComponent<Rigidbody>().isKinematic = true;
         ballContainer = GameObject.Find("StratBallContainer");
         this.gameObject.transform.parent = ballContainer.transform;
@@ -42,6 +61,7 @@ public class StratBall : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             
@@ -54,10 +74,15 @@ public class StratBall : MonoBehaviour
            
             //set rotation to forward
             transform.rotation = playerContainer.transform.rotation;
-            this.GetComponent<Rigidbody>().velocity = transform.forward * 10f;
+            this.GetComponent<Rigidbody>().velocity = transform.forward * 20f;
         }
     }
 
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Terrain")
