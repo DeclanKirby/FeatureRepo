@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// [Kirby, Declan]
+/// Last updated [05/08/2024]
+/// Rotates the player and camera
+/// </summary>
 public class PlayerLook : MonoBehaviour
 {
 

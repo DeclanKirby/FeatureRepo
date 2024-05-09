@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// [Kirby, Declan]
+/// Last updated [05/08/2024]
+/// Controller for player, used new input system to move the player
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
-   
+    private CharacterController characterController;
 
     public GameObject ball;
 
     public GameObject storagePoint;
 
-    public float velocityMult = 10f;
+    public Transform playerBody;
 
-    
+    public float velocityMult = 10f;    
 
-    public float speed = 4f;
-
-    private CharacterController characterController;
+    private float speed = 4f;    
 
     private Vector3 direction;
 
@@ -26,14 +29,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 stratLocation;
 
     private Vector3 _mouseInput;
-
-    public float rotationSpeed = 50f;
-
-    public Transform playerBody;
-
-   
-
-    Vector3 storagePos;
+           
+    public Vector3 storagePos;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();

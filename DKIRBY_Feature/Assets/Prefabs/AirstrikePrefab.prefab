@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 11caf59313698dc41933bdbf7d416bee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   targetLocation: {x: 0, y: 0, z: 0}
   timeDuration: 1
   p01: {x: 0, y: 0, z: 0}
-  checkToCalculate: 1
+  spawned: 1
   moving: 0
   timeStart: 0
+  explosion: 0

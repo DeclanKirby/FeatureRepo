@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// [Kirby, Declan]
+/// Last updated [05/08/2024]
+/// Handles orbital stratagem interpolation and interactions with ground collision
+/// </summary>
 public class OrbitalAnimation : MonoBehaviour
 {
     public Vector3 targetLocation;
@@ -9,10 +14,24 @@ public class OrbitalAnimation : MonoBehaviour
     private Vector3 startingPos;
 
     private Vector3 minScale = new Vector3(1f, 1f, 1f);
+
     private Vector3 maxScale = new Vector3(15f, 15f, 15f);
+
+    public Vector3 p01;
+
     private float duration = 0.5f;
 
     private float startTime;
+
+    private float timeDuration = 1;
+
+    private bool spawned = true;
+
+    private bool moving = false;
+
+    private float timeStart;
+
+    public bool explosion = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,17 +41,9 @@ public class OrbitalAnimation : MonoBehaviour
 
     }
 
-    public float timeDuration = 1f;
-    public Vector3 p01;
 
-    public bool spawned = true;
-    public bool moving = false;
-    public float timeStart;
-
-    public bool explosion = false;
     /// <summary>
-    /// Move the thing, allow the user to check the checkToCalculate box in the inspector
-    /// to start our movement
+    /// when this is spawned, move this using standard linear interpolation
     /// </summary>
 
 
@@ -42,11 +53,11 @@ public class OrbitalAnimation : MonoBehaviour
         {
             spawned = false;
 
-            //set the moving bool to true, and that will start the movement
             moving = true;
+
             timeStart = Time.time;
         }
-        //now check to see if we need to move
+
         if (moving)
         {
             float u = (Time.time - timeStart) / timeDuration;
@@ -58,7 +69,7 @@ public class OrbitalAnimation : MonoBehaviour
                 moving = false;
             }
 
-            //use the standard linear interpolation formula
+            //using the standard linear interpolation formula
             p01 = (1 - u) * startingPos + u * targetLocation;
 
             this.transform.position = p01;
@@ -68,29 +79,27 @@ public class OrbitalAnimation : MonoBehaviour
             ChangeSize();
         }
     }
+    /// <summary>
+    /// This happens when this objects collider collides with the ground
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Terrain")
         {
-            Debug.Log("KABOOOM");
             Collider thisCollider = GetComponent<Collider>();
+
+            //set the collider to false
             thisCollider.enabled = false;
             StartCoroutine(Called());
 
         }
     }
 
-    private void ChangeSize()
-    {
-        float t = Mathf.PingPong(Time.time - startTime, duration) / duration;
-
-        Vector3 growScale = Vector3.Lerp(minScale, maxScale, t);
-
-        transform.localScale = growScale;
-
-
-
-    }
+    /// <summary>
+    /// Set all velocity to zero then do the explosion using ChangeSize' interpolation
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Called()
     {
         this.GetComponent<Rigidbody>().isKinematic = false;
@@ -106,5 +115,19 @@ public class OrbitalAnimation : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
+    }
+    /// <summary>
+    /// using the PingPong, grow and shrink this game object by the parameters given
+    /// </summary>
+    private void ChangeSize()
+    {
+        float t = Mathf.PingPong(Time.time - startTime, duration) / duration;
+
+        Vector3 growScale = Vector3.Lerp(minScale, maxScale, t);
+
+        transform.localScale = growScale;
+
+
+
     }
 }

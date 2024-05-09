@@ -4,11 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
-/*
- * Author: [Kirby,Declan]
- * Last Updated: [04/15/24]
- * UI script for all UI elements
- */
+/// <summary>
+/// [Kirby, Declan]
+/// Last updated [05/08/2024]
+/// Displays UI
+/// </summary>
 public class UI : MonoBehaviour
 {
     public GameObject controlDisplay;
@@ -27,23 +27,16 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         ToggleControls();
-
-
     }
 
     //Toggles Controls UI
     private void ToggleControls()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            
-            
+        {                        
             controlDisplay.SetActive(!controlDisplay.activeSelf);
             stratPanel.SetActive(!stratPanel.activeSelf);
-
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
